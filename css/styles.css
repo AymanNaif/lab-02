@@ -155,3 +155,8 @@ div img {
 .unicorn {
   margin-left: 5%;
 }
+.button {
+  margin-top: 100px;
+  margin-left: 50px;
+  display: inline-block;
+}
