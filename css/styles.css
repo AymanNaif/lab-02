@@ -2,11 +2,13 @@
 @import "./base.css";
 @import "./layout.css";
 @import "./theme.css";
+
 header {
   background-color: #114e60;
   color: aliceblue;
   height: 150px;
   overflow: hidden;
+  margin-bottom: 20px;
 }
 header select {
   margin-right: 250px;
@@ -26,48 +28,52 @@ h1 {
   font-size: 30px;
   font-weight: bold;
 }
+.button {
+  margin-top: 80px;
+  margin-left: 50px;
+  display: inline-block;
+}
+
+.button button {
+  width: 100px;
+  height: 35px;
+  background-color: rgb(189, 236, 255);
+  font-size: 15px;
+}
+.button button:hover {
+  background-color: white;
+  cursor: pointer;
+  color: black;
+  font-weight: bold;
+}
 main {
   box-sizing: border-box;
   width: 80%;
-  /* background-color: red; */
   margin-left: 10%;
 }
-.UniWhal,
-.Happy,
-.Narwhal,
-.Basically,
-.Baby {
+
+div {
   background-color: royalblue;
   display: inline-block;
   width: 20%;
   height: 250px;
+  margin-bottom: 20px;
   overflow: hidden;
-  margin-left: 5%;
+  margin-left: 4%;
 }
-.UniWhal h2,
-.Happy h2,
-.Baby h2,
-.Narwhal h2,
-.Basically h2 {
+div h2 {
   font-size: 20px;
   font-weight: bold;
   margin-left: 2%;
   margin-bottom: 2%;
 }
-.UniWhal p,
-.Happy p,
-.Baby p,
-.Narwhal p,
-.Basically p {
+
+div p {
   font-size: 15px;
   margin-left: 2%;
   margin-bottom: 2%;
 }
-.UniWhal h5,
-.Happy h5,
-.Baby h5,
-.Narwhal h5,
-.Basically h5 {
+div h5 {
   font-size: 15px;
   font-weight: bold;
   margin-left: 2%;
@@ -77,81 +83,6 @@ div img {
   width: 80%;
   margin-left: 10%;
 }
-
-.Rhino,
-.Unicorn,
-.UniLego,
-.Basically,
-.truth,
-.Cera,
-.Believe,
-.Markhor,
-.Mouflon,
-.Serious,
-.Addax,
-.Horned,
-.Smaug,
-.mouflon {
-  background-color: royalblue;
-  display: inline-block;
-  width: 20%;
-  margin-left: 2%;
-  height: 250px;
-  overflow: hidden;
-}
-.Rhino h2,
-.Unicorn h2,
-.UniLego h2,
-.Basically h2,
-.truth h2,
-.Cera h2,
-.Believe h2,
-.Markhor h2,
-.Mouflon h2,
-.Serious h2,
-.Addax h2,
-.Horned h2,
-.Smaug h2 {
-  font-size: 20px;
-  font-weight: bold;
-  margin-left: 2%;
-  margin-bottom: 2%;
-}
-.Rhino p,
-.Unicorn p,
-.UniLego p,
-.Basically p,
-.truth p,
-.Cera p,
-.Believe p,
-.Markhor p,
-.Mouflon p,
-.Serious p,
-.Addax p,
-.Horned p,
-.Smaug p {
-  font-size: 15px;
-  margin-left: 2%;
-  margin-bottom: 2%;
-}
-.Rhino h5,
-.Unicorn h5,
-.UniLego h5,
-.Basically h5,
-.truth h5,
-.Cera h5,
-.Believe h5,
-.Markhor h5,
-.Mouflon h5,
-.Serious h5,
-.Addax h5,
-.Horned h5,
-.Smaug h5 {
-  font-size: 15px;
-  font-weight: bold;
-  margin-left: 2%;
-  margin-bottom: 2%;
-}
-.unicorn {
-  margin-left: 5%;
+.photo-template {
+  display: none;
 }

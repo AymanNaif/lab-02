@@ -19,7 +19,7 @@ Cartoon.prototype.render = function () {
   objClone.find('p').text(this.description);
   objClone.find('h5').text('its have '+this.horns+' horn');
   objClone.removeClass('.photo-template');
-  objClone.attr('class', this.title);
+  objClone.attr('class', this.keyword);
 
   if (keywordArr.includes(this.keyword)=== false) {
     keywordArr.push(this.keyword);
