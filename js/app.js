@@ -9,8 +9,6 @@ function Cartoon(contetnt) {
   this.horns = contetnt.horns;
 }
 
-
-
 Cartoon.prototype.render = function () {
   let objClone = $('.photo-template').clone();
   $('main').append(objClone);
@@ -20,6 +18,7 @@ Cartoon.prototype.render = function () {
   objClone.find('h5').text('its have '+this.horns+' horn');
   objClone.removeClass('.photo-template');
   objClone.attr('class', this.keyword);
+
 
   if (keywordArr.includes(this.keyword)=== false) {
     keywordArr.push(this.keyword);
@@ -44,9 +43,10 @@ function getData(data) {
   });
   function makeObject(item) {
     let newObj = new Cartoon(item);
-    newObj.render();
+    newObj.renderObject();
   }
 }
+
 
 readJson();
 

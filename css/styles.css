@@ -86,3 +86,8 @@ div img {
 .photo-template {
   display: none;
 }
+.button {
+  margin-top: 100px;
+  margin-left: 50px;
+  display: inline-block;
+}
