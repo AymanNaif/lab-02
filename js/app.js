@@ -9,13 +9,16 @@ function Cartoon(contetnt) {
   this.horns = contetnt.horns;
 }
 
+Cartoon.prototype.render = function () {
+  let objClone = $('.photo-template').clone();
+  $('main').append(objClone);
+  objClone.find('h2').text(this.title);
+  objClone.find('img').attr('src',this.image_url);
+  objClone.find('p').text(this.description);
+  objClone.find('h5').text('its have '+this.horns+' horn');
+  objClone.removeClass('.photo-template');
+  objClone.attr('class', this.keyword);
 
-
-Cartoon.prototype.renderObject = function () {
-
-  let template = $('#cartoon').html();
-  let makeObj = Mustache.render(template,this);
-  $('main').append(makeObj);
 
   if (keywordArr.includes(this.keyword)=== false) {
     keywordArr.push(this.keyword);
@@ -55,41 +58,3 @@ function makeFilter() {
   $('div').hide();
   $(`.${select}`).show();
 }
-
-// ########## JSON 2#######################
-
-function readJsonTwo() {
-  const ajaxSetting = {
-    method: 'get',
-    dataType: 'json'
-  };
-
-  $.ajax('data/page-2.json', ajaxSetting).then(getDataTwo);
-}
-
-function getDataTwo(data) {
-  data.forEach(makeObjectTwo);
-  keywordArr.forEach((item) => {
-    $('select').append(`<option value=${item}>${item}</option>`);
-  });
-  function makeObjectTwo(item) {
-    let newObj = new Cartoon(item);
-    newObj.renderObject();
-  }
-}
-// ############ pages #############
-$('#pageOne').on('click', pageOne);
-function pageOne() {
-  $('div').hide();
-  readJson();
-
-}
-
-$('#pageTwo').on('click', pageTwo);
-function pageTwo() {
-  $('div').hide();
-  readJsonTwo();
-
-}
-
-// TODO: make filter list for page1 and page 2
