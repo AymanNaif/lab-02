@@ -15,6 +15,7 @@ Cartoon.prototype.renderObject = function () {
   let makeObj = Mustache.render(template,this);
   $('main').append(makeObj);
 
+
   if (keywordArr.includes(this.keyword)=== false) {
     keywordArr.push(this.keyword);
   }
@@ -95,3 +96,4 @@ function pageTwo() {
 }
 
 // TODO: make filter list for page1 and page 2
+

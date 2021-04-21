@@ -82,4 +82,9 @@ div h5 {
 div img {
   width: 80%;
   margin-left: 10%;
+
 }
+.photo-template {
+  display: none;
+}
+
