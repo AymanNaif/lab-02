@@ -82,16 +82,16 @@ function getDataTwo(data) {
 $('#pageOne').on('click', pageOne);
 function pageOne() {
   console.log(keywordArr);
-  // keywordArr = [];
-
-  $('div').hide();
+  $('div').remove();
+  $('select>option').remove();
   readJson();
 
 }
 
 $('#pageTwo').on('click', pageTwo);
 function pageTwo() {
-  $('div').hide();
+  $('select>option').remove();
+  $('div').remove();
   readJsonTwo();
 }
 
