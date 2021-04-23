@@ -10,13 +10,13 @@ header {
   overflow: hidden;
   margin-bottom: 20px;
 }
-header select {
+.keywordSelect {
   margin-right: 250px;
   float: right;
   margin-top: 80px;
-  height: 40px;
+  height: 35px;
 }
-header select:hover {
+.keywordSelect:hover {
   background-color: rgb(120, 150, 241);
   cursor: pointer;
   color: white;
@@ -37,6 +37,7 @@ h1 {
 .button button {
   width: 100px;
   height: 35px;
+  margin-left: 10px;
   background-color: rgb(189, 236, 255);
   font-size: 15px;
 }
@@ -56,7 +57,7 @@ div {
   background-color: royalblue;
   display: inline-block;
   width: 20%;
-  height: 250px;
+  height: 270px;
   margin-bottom: 20px;
   overflow: hidden;
   margin-left: 4%;
@@ -70,21 +71,35 @@ div h2 {
 
 div p {
   font-size: 15px;
-  margin-left: 2%;
+  color: aliceblue;
+  margin-left: 5%;
   margin-bottom: 2%;
+  margin-top: 2%;
 }
 div h5 {
   font-size: 15px;
   font-weight: bold;
-  margin-left: 2%;
+  margin-left: 5%;
+  margin-top: 4%;
   margin-bottom: 2%;
 }
 div img {
   width: 80%;
+  height: 50%;
   margin-left: 10%;
-
 }
 .photo-template {
   display: none;
 }
 
+.sort {
+  float: left;
+  margin-left: 70px;
+  margin-top: 80px;
+  height: 35px;
+}
+.sort:hover {
+  background-color: rgb(120, 150, 241);
+  cursor: pointer;
+  color: white;
+}

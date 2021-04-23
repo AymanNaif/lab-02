@@ -1,14 +1,16 @@
 /* eslint-disable no-undef */
 'use strict';
 let keywordArr = [];
+let objectsArray = [];
+
 function Cartoon(contetnt) {
   this.title = contetnt.title;
   this.image_url = contetnt.image_url;
   this.description = contetnt.description;
   this.keyword = contetnt.keyword;
   this.horns = contetnt.horns;
+  objectsArray.push(this);
 }
-
 Cartoon.prototype.renderObject = function () {
 
   let template = $('#cartoon').html();
@@ -20,7 +22,6 @@ Cartoon.prototype.renderObject = function () {
     keywordArr.push(this.keyword);
   }
 };
-
 
 function readJson() {
   const ajaxSetting = {
@@ -35,23 +36,24 @@ function getData(data) {
   data.forEach(makeObject);
 
   keywordArr.forEach((item) => {
-    $('select').append(`<option value=${item}>${item}</option>`);
+    $('.keywordSelect').append(`<option value=${item}>${item}</option>`);
   });
   function makeObject(item) {
     let newObj = new Cartoon(item);
     newObj.renderObject();
+
   }
 }
 
 
 readJson();
 
+console.log(objectsArray);
 
 // make fillter #################################### below #####################################
-$('select').on('change', makeFilter);
+$('.keywordSelect').on('change', makeFilter);
 function makeFilter() {
   let select = $(this).val();
-  console.log(select);
   $('div').hide();
   $(`.${select}`).show();
 }
@@ -71,7 +73,7 @@ function readJsonTwo() {
 function getDataTwo(data) {
   data.forEach(makeObjectTwo);
   keywordArr.forEach((item) => {
-    $('select').append(`<option value=${item}>${item}</option>`);
+    $('.keywordSelect').append(`<option value=${item}>${item}</option>`);
   });
   function makeObjectTwo(item) {
     let newObj = new Cartoon(item);
@@ -81,19 +83,60 @@ function getDataTwo(data) {
 // ############ pages #############
 $('#pageOne').on('click', pageOne);
 function pageOne() {
-  console.log(keywordArr);
-  // keywordArr = [];
-
-  $('div').hide();
+  objectsArray = [];
+  $('.keywordSelect>option').remove();
+  $('div').remove();
   readJson();
 
 }
 
 $('#pageTwo').on('click', pageTwo);
 function pageTwo() {
-  $('div').hide();
+  $('.keywordSelect>option').remove();
+  $('div').remove();
   readJsonTwo();
 }
 
-// TODO: make filter list for page1 and page 2
+// ######### sort ######################
+console.log(objectsArray);
 
+$('.sort').on('change', sortImage);
+function sortImage() {
+  $('div').hide();
+  let sort = $('.sort').val();
+
+  if (sort=== 'default') {
+    $('div').show();
+  }
+  if (sort === 'title') {
+    objectsArray.sort((a, b) => {
+      let firstTitle = a.title;
+      let nextTitle = b.title;
+      if (firstTitle < nextTitle) {
+        return -1;
+      }
+      if (firstTitle > nextTitle) {
+        return 1;
+      }
+    });
+    objectsArray.forEach(element => {
+      element.renderObject();
+    });
+  }
+
+  if(sort==='horns'){
+    objectsArray.sort((a, b) => {
+      let firstHorns = a.horns;
+      let nextHorns = b.horns;
+      if (firstHorns < nextHorns) {
+        return -1;
+      }
+      if (firstHorns > nextHorns) {
+        return 1;
+      }
+    });
+    objectsArray.forEach(element => {
+      element.renderObject();
+    });
+  }
+}
