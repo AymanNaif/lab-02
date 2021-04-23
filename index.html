@@ -11,16 +11,23 @@
   <h2>{{title}}</h2>
  <img src="{{image_url}}" alt="">
  <p>{{description}}</p>
- <h5>{{horns}}</h5>
+ <h5>the number of horn: {{horns}}</h5>
 </div>
     </script>
   </head>
   <body>
     <header>
       <h1>The Gallery of Horns</h1>
-      <select name="selector">
+      <select class='keywordSelect' name="selector">
         <option id="options" value="default">Filter by Keyword</option>
      </select>
+     
+     <select name=""  class="sort">
+       <option value="default">sort by</option>
+       <option value="title">Title</option>
+       <option value="horns"># of horns</option>
+     </select>
+     
      <section class="button">
      <button id="pageOne">page1</button>
       <button id="pageTwo">page2</button>
