@@ -1,142 +1,131 @@
-/* eslint-disable no-undef */
 'use strict';
 let keywordArr = [];
-let objectsArray = [];
-
-function Cartoon(contetnt) {
-  this.title = contetnt.title;
-  this.image_url = contetnt.image_url;
-  this.description = contetnt.description;
-  this.keyword = contetnt.keyword;
-  this.horns = contetnt.horns;
-  objectsArray.push(this);
+let objectsArr = [];
+function Image(item) {
+  this.title = item.title;
+  this.imgUrl = item.image_url;
+  this.description = item.description;
+  this.horns = item.horns;
+  this.keyword = item.keyword;
+  objectsArr.push(this);
 }
-Cartoon.prototype.renderObject = function () {
 
-  let template = $('#cartoon').html();
-  let makeObj = Mustache.render(template,this);
-  $('main').append(makeObj);
-
-
-  if (keywordArr.includes(this.keyword)=== false) {
-    keywordArr.push(this.keyword);
-  }
+Image.prototype.renderObj = function () { // For make div and elements
+  let template = $('#images').html();
+  let renderObjects = Mustache.render(template,this);
+  $('main').append(renderObjects);
 };
 
-function readJson() {
-  const ajaxSetting = {
+function readJson() { // For read Json File and get the data
+  const ajaxSett = {
     method: 'get',
     dataType: 'json'
   };
-
-  $.ajax('data/page-1.json', ajaxSetting).then(getData);
+  $.ajax('data/page-1.json', ajaxSett).then(getData);
 }
 
 function getData(data) {
-  data.forEach(makeObject);
+  data.forEach(element => { // For make new Objects and render it inside the page
+    let newObject = new Image(element);
+    newObject.renderObj();
+    if (keywordArr.includes(newObject.keyword)===false) {
+      keywordArr.push(newObject.keyword);
+      $('.keywordSelect').append(`<option id="options" value="${newObject.keyword}">${newObject.keyword}</option>`);
 
-  keywordArr.forEach((item) => {
-    $('.keywordSelect').append(`<option value=${item}>${item}</option>`);
+    }
   });
-  function makeObject(item) {
-    let newObj = new Cartoon(item);
-    newObj.renderObject();
 
-  }
 }
-
-
 readJson();
 
-console.log(objectsArray);
-
-// make fillter #################################### below #####################################
+// ################ Make Filter ###################
 $('.keywordSelect').on('change', makeFilter);
 function makeFilter() {
-  let select = $(this).val();
+  let option = $('.keywordSelect').val();
   $('div').hide();
-  $(`.${select}`).show();
+  $(`.${option}`).show();
 }
 
-// ########## JSON 2#######################
+// ################ Lab 02 is Done ###################
 
-function readJsonTwo() {
-  const ajaxSetting = {
+// ################### Page Two ######################
+
+
+function readJsonTwo() { // For read Json File and get the data
+  const ajaxSett = {
     method: 'get',
     dataType: 'json'
   };
-  keywordArr = [];
-
-  $.ajax('data/page-2.json', ajaxSetting).then(getDataTwo);
+  $.ajax('data/page-2.json', ajaxSett).then(getDataTwo);
 }
 
 function getDataTwo(data) {
-  data.forEach(makeObjectTwo);
-  keywordArr.forEach((item) => {
-    $('.keywordSelect').append(`<option value=${item}>${item}</option>`);
+  data.forEach(element => { // For make new Objects and render it inside the page
+    let newObject = new Image(element);
+    newObject.renderObj();
+    if (keywordArr.includes(newObject.keyword)===false) {
+      keywordArr.push(newObject.keyword);
+      $('.keywordSelect').append(`<option id="options" value="${newObject.keyword}">${newObject.keyword}</option>`);
+
+
+    }
   });
-  function makeObjectTwo(item) {
-    let newObj = new Cartoon(item);
-    newObj.renderObject();
-  }
+
 }
-// ############ pages #############
+
 $('#pageOne').on('click', pageOne);
 function pageOne() {
-  objectsArray = [];
-  $('.keywordSelect>option').remove();
+  objectsArr = [];
   $('div').remove();
+  $('.keywordSelect>option').remove();
+  $('.keywordSelect').append('<option id="options" value="default">Filter by Keyword</option>');
+  for (let i = 0; i < 11; i++) {
+    $('.keywordSelect').append(`<option id="options" value="${keywordArr[i]}">${keywordArr[i]}</option>`);
+  }
+
+
   readJson();
-
 }
-
 $('#pageTwo').on('click', pageTwo);
 function pageTwo() {
-  $('.keywordSelect>option').remove();
   $('div').remove();
+  $('.keywordSelect>option').remove();
+  $('.keywordSelect').append('<option id="options" value="default">Filter by Keyword</option>');
   readJsonTwo();
 }
 
-// ######### sort ######################
-console.log(objectsArray);
-
-$('.sort').on('change', sortImage);
-function sortImage() {
+// ############ Sort ###############
+$('.sort').on('change', sortImages);
+function sortImages() {
+  let selctedValue = $('.sort').val();
+  $('div').remove();
   $('div').hide();
-  let sort = $('.sort').val();
-
-  if (sort=== 'default') {
-    $('div').show();
-  }
-  if (sort === 'title') {
-    objectsArray.sort((a, b) => {
-      let firstTitle = a.title;
-      let nextTitle = b.title;
-      if (firstTitle < nextTitle) {
+  if (selctedValue === 'title') {
+    objectsArr.sort((a, b) => {
+      if (a.title < b.title) {
         return -1;
       }
-      if (firstTitle > nextTitle) {
-        return 1;
+      if (a.title > b.title) {
+        return 11;
+      } else {
+        return 0;
       }
-    });
-    objectsArray.forEach(element => {
-      element.renderObject();
+    }
+    );
+    objectsArr.forEach((element) => {
+      element.renderObj();
     });
   }
 
-  if(sort==='horns'){
-    objectsArray.sort((a, b) => {
-      let firstHorns = a.horns;
-      let nextHorns = b.horns;
-      if (firstHorns < nextHorns) {
-        return -1;
-      }
-      if (firstHorns > nextHorns) {
-        return 1;
-      }
+
+
+  if (selctedValue === 'horns') {
+    objectsArr.sort((a, b) => {
+      return a.horns - b.horns;
     });
-    objectsArray.forEach(element => {
-      element.renderObject();
+    objectsArr.forEach((element) => {
+      element.renderObj();
     });
+
   }
 }
