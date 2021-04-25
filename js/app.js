@@ -95,6 +95,7 @@ function pageTwo() {
 }
 
 // ############ Sort ###############
+
 $('.sort').on('change', sortImages);
 function sortImages() {
   let selctedValue = $('.sort').val();
